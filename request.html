@@ -58,11 +58,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
     <script type="text/javascript">
-      function count(mixedText) {
+      function count(mixedText, includePunctuation) {
         if (!mixedText) return 0;
         mixedText = mixedText.replace(/\d+/g, '');
         // http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml
-        return mixedText.match(/\w+|[^\u0000-\u0040, \u005b-\u0060, \u007b-\u007f, \u3000-\u303f, \uff00-\uffef]/g).length;
+        if (includePunctuation) {
+          return mixedText.match(/\w+|[^\u0000-\u0040, \u005b-\u0060, \u007b-\u007f, \uff00-\uffef]/g).length;
+        } else {
+          return mixedText.match(/\w+|[^\u0000-\u0040, \u005b-\u0060, \u007b-\u007f, \u3000-\u303f, \uff00-\uffef]/g).length;
+        }
       }
 
       function updateCost() {
@@ -74,9 +78,16 @@
         chars = count(requestText);
 
         switch (requestType) {
-          case 0: cost = chars * 15; break;
-          case 1: cost = chars * 10; break;
-          case 2: cost = chars * 12; break;
+          case 0:
+            chars = count(requestText, true);
+            cost = chars * 15; break;
+
+          case 1:
+            cost = chars * 10; break;
+
+          case 2:
+            chars = count(requestText, true);
+            cost = chars * 12; break;
         }
 
         $('#characterCount').text(chars);
