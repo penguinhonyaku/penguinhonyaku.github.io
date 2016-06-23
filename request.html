@@ -1,0 +1,92 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="nav-bar">
+      <span><a href="index.html">Home</a></span>
+      <span class="divider">|</span>
+      <span><a href="why.html">Why us?</a></span>
+      <span class="divider">|</span>
+      <span><a href="faq.html">FAQ</a></span>
+      <span class="divider">|</span>
+      <span><a href="request.html">Request Translation/Editing</a></span>
+    </div>
+
+    <div>
+      <div style="width: 20%; float: left"><img src="logo.png" style="margin-left: 16px"></div>
+      <div style="width: 80%; float: left">
+        <div class="content">
+          <h2>Request Translation/Editing</h2>
+          <div class="content-block">
+            <ol>
+              <li>お問い合わせやお見積もりはこちらまで。<b>penguinhonyaku@gmail.com</b></li>
+              <li>お友達の紹介の場合は、初回2割引します。</li>
+              <li>文字数や英単語数のカウンターです。下の入力欄に和文／英文を貼りつけると、単語数（ワード数）と文字数が表示されます。</li>
+    
+            </ol>
+          </div>
+
+          <div class="form">
+            <div>
+              <div align="right">
+                <select id="requestType">
+                  <option value="0">和英翻訳: 15円／字</option>
+                  <option value="1">英文校正: 10円／ワード</option>
+                  <option value="2">英文校閲／クロスチェック: 12円／字</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <textarea id="request" class="request-textarea" spellcheck="false" autofocus></textarea>
+            </div>
+            <div>
+              <div align="right"><b>Estimated Cost</b> : <span id="cost">0</span> yen (<span id="characterCount">0</span> characters)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+      <div class="footer"><div class="content">Copyright &copy; 2016 Penguin Honyaku</div></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      function count(mixedText) {
+        if (!mixedText) return 0;
+        mixedText = mixedText.replace(/\d+/g, '');
+        // http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml
+        return mixedText.match(/\w+|[^\u0000-\u0040, \u005b-\u0060, \u007b-\u007f, \u3000-\u303f, \uff00-\uffef]/g).length;
+      }
+
+      function updateCost() {
+        var requestType = parseInt($('#requestType').val());
+        var requestText = $('#request').val();
+        var chars = 0;
+        var cost = 0;
+
+        chars = count(requestText);
+
+        switch (requestType) {
+          case 0: cost = chars * 15; break;
+          case 1: cost = chars * 10; break;
+          case 2: cost = chars * 12; break;
+        }
+
+        $('#characterCount').text(chars);
+        $('#cost').text(cost);
+      }
+
+      $('#requestType').on('change', updateCost);
+      $('#request').on('input', updateCost);
+    </script>
+
+</body>
+
+</html>
