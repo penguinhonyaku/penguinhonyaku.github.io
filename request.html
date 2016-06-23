@@ -63,7 +63,7 @@
         mixedText = mixedText.replace(/\d+/g, '');
         // http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml
         if (includePunctuation) {
-          return mixedText.match(/\w+|[^\u0000-\u0040, \u005b-\u0060, \u007b-\u007f, \uff00-\uffef]/g).length;
+          return mixedText.match(/\w+|[^\u0000-\u0020]/g).length;
         } else {
           return mixedText.match(/\w+|[^\u0000-\u0040, \u005b-\u0060, \u007b-\u007f, \u3000-\u303f, \uff00-\uffef]/g).length;
         }
@@ -75,14 +75,13 @@
         var chars = 0;
         var cost = 0;
 
-        chars = count(requestText);
-
         switch (requestType) {
           case 0:
             chars = count(requestText, true);
             cost = chars * 15; break;
 
           case 1:
+            chars = count(requestText, false);
             cost = chars * 10; break;
 
           case 2:
