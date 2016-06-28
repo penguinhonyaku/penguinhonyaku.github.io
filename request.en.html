@@ -1,0 +1,86 @@
+<html>
+
+<head>
+  <title>Penguin Honyaku - Japanese-English Translation Services</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="nav-bar">
+      <div style="float: left">
+        <span><a href="index.en.html">Home</a></span>
+        <span class="divider">|</span>
+        <span><a href="why.en.html">Why us?</a></span>
+        <span class="divider">|</span>
+        <span><a href="faq.en.html">FAQ</a></span>
+        <span class="divider">|</span>
+        <span><a href="request.en.html">Request Translation/Editing</a></span>
+        <span class="divider">|</span>
+        <span><a href="blog.html">Blog</a></span>
+      </div>
+      <div class="language" style="float: right">
+        <span><a href="request.html">JP</a></span> | <span><a href="request.en.html"><u>EN</u></a></span>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+
+    <div>
+      <div style="width: 20%; float: left"><img src="logo.png" style="margin-left: 16px"></div>
+      <div style="width: 80%; float: left">
+        <div class="content">
+          <h1>Request Translation/Editing</h1>
+          <div class="content-block">
+            <ol>
+              <li>お問い合わせやお見積もりはこちらまで。<b>penguinhonyaku@gmail.com</b></li>
+              <li>お友達の紹介の場合は、初回2割引します。</li>
+              <li>文字数や英単語数のカウンターです。下の入力欄に和文／英文を貼りつけると、単語数（ワード数）と文字数が表示されます。</li>
+    
+            </ol>
+          </div>
+
+          <div class="form">
+            <div>
+              <div align="right">
+                <select id="requestType">
+                  <option value="0">和英翻訳: 15円／字</option>
+                  <option value="1">英文校正: 10円／ワード</option>
+                  <option value="2">英文校閲／クロスチェック: 12円／字</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <textarea id="request" class="request-textarea" spellcheck="false" autofocus></textarea>
+            </div>
+            <div>
+              <div align="right"><b>Estimated Cost</b> : <span id="cost">0</span> yen (<span id="characterCount">0</span> characters)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+      <div class="footer"><div class="content">Copyright &copy; 2016 Penguin Honyaku</div></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="request.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var updateCost = updateCostFunc($('#requestType'), $('#request'), $('#characterCount'), $('#cost'));
+      $('#requestType').on('change', updateCost);
+      $('#request').on('input', updateCost);
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79775635-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+</body>
+
+</html>
