@@ -24,9 +24,17 @@ a:hover {
   padding: 12px;
 }
 
-.nav-bar > .divider {
+.nav-bar .divider {
   margin: 0px 8px;
   color: #aaa;
+}
+
+.nav-bar .language {
+  font-size: 10px;
+}
+
+.nav-bar .language a {
+  color: #888;
 }
 
 .content {

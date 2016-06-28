@@ -1,6 +1,7 @@
 <html>
 
 <head>
+  <title>Penguin Honyaku - Japanese-English Translation Services</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
@@ -8,15 +9,21 @@
 <body>
   <div class="wrapper">
     <div class="nav-bar">
-      <span><a href="index.html">Home</a></span>
-      <span class="divider">|</span>
-      <span><a href="why.html">Why us?</a></span>
-      <span class="divider">|</span>
-      <span><a href="faq.html">FAQ</a></span>
-      <span class="divider">|</span>
-      <span><a href="request.html">Request Translation/Editing</a></span>
-      <span class="divider">|</span>
-      <span><a href="blog.html">Blog</a></span>
+      <div style="float: left">
+        <span><a href="index.html">Home</a></span>
+        <span class="divider">|</span>
+        <span><a href="why.html">Why us?</a></span>
+        <span class="divider">|</span>
+        <span><a href="faq.html">FAQ</a></span>
+        <span class="divider">|</span>
+        <span><a href="request.html">Request Translation/Editing</a></span>
+        <span class="divider">|</span>
+        <span><a href="blog.html">Blog</a></span>
+      </div>
+      <div class="language" style="float: right">
+        <span><a href="request.html"><u>JP</u></a></span> | <span><a href="request.en.html">EN</a></span>
+      </div>
+      <div style="clear:both"></div>
     </div>
 
     <div>
@@ -58,43 +65,9 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
+    <script src="request.js" type="text/javascript"></script>
     <script type="text/javascript">
-      function count(mixedText, includePunctuation) {
-        if (!mixedText) return 0;
-        mixedText = mixedText.replace(/\d+/g, '');
-        // http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml
-        if (includePunctuation) {
-          return mixedText.match(/\w+|[^\u0000-\u0020]/g).length;
-        } else {
-          return mixedText.match(/\w+|[^\u0000-\u0040, \u005b-\u0060, \u007b-\u007f, \u3000-\u303f, \uff00-\uffef]/g).length;
-        }
-      }
-
-      function updateCost() {
-        var requestType = parseInt($('#requestType').val());
-        var requestText = $('#request').val();
-        var chars = 0;
-        var cost = 0;
-
-        switch (requestType) {
-          case 0:
-            chars = count(requestText, true);
-            cost = chars * 15; break;
-
-          case 1:
-            chars = count(requestText, false);
-            cost = chars * 10; break;
-
-          case 2:
-            chars = count(requestText, true);
-            cost = chars * 12; break;
-        }
-
-        $('#characterCount').text(chars);
-        $('#cost').text(cost);
-      }
-
+      var updateCost = updateCostFunc($('#requestType'), $('#request'), $('#characterCount'), $('#cost'));
       $('#requestType').on('change', updateCost);
       $('#request').on('input', updateCost);
     </script>
